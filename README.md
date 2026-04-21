@@ -29,7 +29,7 @@ Only use this for isolated internal testing against a dedicated Google Workspace
 
 ## Prerequisites
 
-- Node.js 24+
+- Node.js 22+
 - A Cloudflare Workers account
 - A Workers KV namespace bound to `ZEROAUTH_CODES`
 - A Google Workspace admin account with access to `Security > Authentication > SSO with third party IdP`
@@ -134,17 +134,17 @@ Source: [Google Workspace: Setting up SSO](https://support.google.com/a/answer/1
 
 ## Environment variables
 
-| Variable | Required | Description |
-| --- | --- | --- |
-| `ZEROAUTH_CLIENT_ID` | Yes | Single allowed OAuth client ID |
-| `ZEROAUTH_CLIENT_SECRET` | Yes | Single allowed OAuth client secret |
-| `ZEROAUTH_ALLOWED_REDIRECT_URIS` | No | Comma-separated or JSON array allowlist of redirect URIs |
-| `ZEROAUTH_PRIVATE_JWK` | Yes | Private signing JWK as a JSON string |
-| `ZEROAUTH_KID` | Yes | Key ID used in JWT headers and JWKS |
-| `ZEROAUTH_ISSUER` | Yes | Explicit public issuer URL; must exactly match what Google uses |
-| `ZEROAUTH_AUTH_CODE_TTL_SECONDS` | No | Authorization code TTL, default `60` |
-| `ZEROAUTH_TOKEN_TTL_SECONDS` | No | Access token and ID token TTL, default `3600` |
-| `ZEROAUTH_ALLOW_ANY_LOGIN_HINT` | No | Must be `true` to enable unsafe no-auth behavior |
+| Variable                         | Required | Description                                                     |
+| -------------------------------- | -------- | --------------------------------------------------------------- |
+| `ZEROAUTH_CLIENT_ID`             | Yes      | Single allowed OAuth client ID                                  |
+| `ZEROAUTH_CLIENT_SECRET`         | Yes      | Single allowed OAuth client secret                              |
+| `ZEROAUTH_ALLOWED_REDIRECT_URIS` | No       | Comma-separated or JSON array allowlist of redirect URIs        |
+| `ZEROAUTH_PRIVATE_JWK`           | Yes      | Private signing JWK as a JSON string                            |
+| `ZEROAUTH_KID`                   | Yes      | Key ID used in JWT headers and JWKS                             |
+| `ZEROAUTH_ISSUER`                | Yes      | Explicit public issuer URL; must exactly match what Google uses |
+| `ZEROAUTH_AUTH_CODE_TTL_SECONDS` | No       | Authorization code TTL, default `60`                            |
+| `ZEROAUTH_TOKEN_TTL_SECONDS`     | No       | Access token and ID token TTL, default `3600`                   |
+| `ZEROAUTH_ALLOW_ANY_LOGIN_HINT`  | No       | Must be `true` to enable unsafe no-auth behavior                |
 
 ## Commands
 
