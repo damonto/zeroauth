@@ -4,6 +4,8 @@ ZeroAuth is a minimal OpenID Connect identity provider for internal Google Works
 
 This is intentionally unsafe for production use.
 
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/damonto/zeroauth)
+
 ## What it implements
 
 - Authorization Code Flow only
