@@ -111,7 +111,7 @@ export async function handleRequest(request: Request, env: Env): Promise<Respons
     }
 
     if (request.method === 'POST' && url.pathname === '/token') {
-      return await handleToken(request, config, await signingContext(), env.AUTH_CODES);
+      return await handleToken(request, config, await signingContext(), env.ZEROAUTH_CODES);
     }
 
     if (request.method === 'GET' && url.pathname === '/userinfo') {

@@ -31,7 +31,7 @@ Only use this for isolated internal testing against a dedicated Google Workspace
 
 - Node.js 24+
 - A Cloudflare Workers account
-- A Workers KV namespace bound to `AUTH_CODES`
+- A Workers KV namespace bound to `ZEROAUTH_CODES`
 - A Google Workspace admin account with access to `Security > Authentication > SSO with third party IdP`
 
 ## Install
@@ -87,8 +87,8 @@ For Google Workspace compatibility, use an RSA key and keep `alg` as `RS256`. Co
 1. Create a KV namespace:
 
    ```bash
-   npx wrangler kv namespace create AUTH_CODES
-   npx wrangler kv namespace create AUTH_CODES --preview
+   npx wrangler kv namespace create ZEROAUTH_CODES
+   npx wrangler kv namespace create ZEROAUTH_CODES --preview
    ```
 
 2. Replace the placeholder IDs in [wrangler.toml](/home/user/workspace/zeroauth/wrangler.toml).
@@ -103,6 +103,38 @@ For Google Workspace compatibility, use an RSA key and keep `alg` as `RS256`. Co
    - `ZEROAUTH_ALLOW_ANY_LOGIN_HINT=true`
 
 5. Leave `ZEROAUTH_ALLOWED_REDIRECT_URIS` empty for the first deploy if you do not yet know Google's callback URI.
+
+## Deploy with GitHub Actions
+
+This repository now includes [deploy.yml](/home/user/workspace/zeroauth/.github/workflows/deploy.yml).
+
+- Pull requests run `npm test` and `npm run typecheck`.
+- Pushes to `main` deploy ZeroAuth automatically.
+- You can also trigger a deploy manually from GitHub Actions with `workflow_dispatch`.
+
+Before the workflow can deploy successfully, do the one-time setup below:
+
+1. Create the `ZEROAUTH_CODES` KV namespace and put the real IDs into [wrangler.toml](/home/user/workspace/zeroauth/wrangler.toml).
+2. In GitHub repository settings, add these Actions secrets:
+
+   - `CLOUDFLARE_API_TOKEN`
+   - `CLOUDFLARE_ACCOUNT_ID`
+   - `ZEROAUTH_CLIENT_ID`
+   - `ZEROAUTH_CLIENT_SECRET`
+   - `ZEROAUTH_PRIVATE_JWK`
+   - `ZEROAUTH_KID`
+   - `ZEROAUTH_ISSUER`
+   - `ZEROAUTH_ALLOW_ANY_LOGIN_HINT`
+
+3. Optional GitHub secrets you can add if needed:
+
+   - `ZEROAUTH_ALLOWED_REDIRECT_URIS`
+   - `ZEROAUTH_AUTH_CODE_TTL_SECONDS`
+   - `ZEROAUTH_TOKEN_TTL_SECONDS`
+
+The workflow uses `cloudflare/wrangler-action@v3` to run `wrangler deploy`, and it also syncs the `ZEROAUTH_*` values from GitHub Actions secrets into Cloudflare Worker secrets on every deployment.
+
+That means you do not need to run `wrangler deploy` or `wrangler secret put` manually from your laptop once GitHub Actions is set up.
 
 ## Google Workspace setup
 

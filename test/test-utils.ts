@@ -50,7 +50,7 @@ export async function createTestEnv(overrides: Partial<Env> = {}): Promise<Env> 
   privateJwk.use = 'sig';
 
   return {
-    AUTH_CODES: new MockKVNamespace() as unknown as KVNamespace,
+    ZEROAUTH_CODES: new MockKVNamespace() as unknown as KVNamespace,
     ZEROAUTH_ALLOW_ANY_LOGIN_HINT: 'true',
     ZEROAUTH_ALLOWED_REDIRECT_URIS: 'https://client.example/callback',
     ZEROAUTH_AUTH_CODE_TTL_SECONDS: '60',

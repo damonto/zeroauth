@@ -111,7 +111,7 @@ export async function handleAuthorize(
 
   const normalizedScope = normalizeScope(scope);
   const code = await createAuthorizationCode(
-    env.AUTH_CODES,
+    env.ZEROAUTH_CODES,
     {
       authTime: Math.floor(Date.now() / 1000),
       clientId: config.clientId,

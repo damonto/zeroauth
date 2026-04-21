@@ -1,5 +1,5 @@
 export interface Env {
-  AUTH_CODES: KVNamespace;
+  ZEROAUTH_CODES: KVNamespace;
   ZEROAUTH_CLIENT_ID: string;
   ZEROAUTH_CLIENT_SECRET: string;
   ZEROAUTH_ALLOWED_REDIRECT_URIS?: string;
