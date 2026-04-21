@@ -1,0 +1,8 @@
+name = "zeroauth"
+main = "src/index.ts"
+compatibility_date = "2025-04-15"
+
+[[kv_namespaces]]
+binding = "AUTH_CODES"
+id = "00000000000000000000000000000000"
+preview_id = "00000000000000000000000000000000"
